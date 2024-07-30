@@ -5,30 +5,32 @@ import PlaceList from "../components/PlaceList";
 
 const dummyPlaces = [
   {
-    id: 'p1',
-    title: 'dummy title',
-    description: 'dummy des',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg',
-    address: 'dummy address',
+    id: "p1",
+    title: "dummy title",
+    description: "dummy des",
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg",
+    address: "dummy address",
     location: {
-      lat: 40,
-      lng: -73
+      lat: 40.7484405,
+      lng: -73.9856644,
     },
-    creator: 'u1'
+    creator: "u1",
   },
   {
-    id: 'p2',
-    title: 'dummy title',
-    description: 'dummy des',
-    imageUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg',
-    address: 'dummy address',
+    id: "p2",
+    title: "dummy title",
+    description: "dummy des",
+    imageUrl:
+      "https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg",
+    address: "dummy address",
     location: {
-      lat: 40,
-      lng: -73
+      lat: 40.7484405,
+      lng: -73.9856644,
     },
-    creator: 'u2'
+    creator: "u2",
   },
-]
+];
 const UserPlaces = () => {
 
   const userId = useParams().uid;
