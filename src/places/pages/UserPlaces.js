@@ -2,7 +2,6 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import PlaceList from "../components/PlaceList";
 
-
 const dummyPlaces = [
   {
     id: "p1",
@@ -31,6 +30,7 @@ const dummyPlaces = [
     creator: "u2",
   },
 ];
+
 const UserPlaces = () => {
 
   const userId = useParams().uid;

@@ -6,7 +6,7 @@ import NewPlace from "./places/pages/NewPlace";
 import Users from "./user/pages/Users";
 import UserPlaces from "./places/pages/UserPlaces";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
-import UpdatePlace from "./places/components/UpdatePlace";
+import UpdatePlace from "./places/pages/UpdatePlace";
 
 function App() {
   return (
