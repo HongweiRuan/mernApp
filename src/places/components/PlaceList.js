@@ -12,7 +12,7 @@ const PlaceList = (props) => {
       <div className="place-list center">
         <Card>
           <h2>No places found. maybe create one?</h2>
-          <Button to="/place/new">share place</Button>
+          <Button to="/places/new">share place</Button>
         </Card>
       </div>
     );
