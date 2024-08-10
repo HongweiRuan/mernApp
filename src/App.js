@@ -1,5 +1,5 @@
 import "./App.css";
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { Navigate, Routes, Route, BrowserRouter as Router } from "react-router-dom";
 
 import NewPlace from "./places/pages/NewPlace";
@@ -8,22 +8,54 @@ import UserPlaces from "./places/pages/UserPlaces";
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import UpdatePlace from "./places/pages/UpdatePlace";
 import Auth from "./user/pages/Auth";
+import { AuthContext } from "./shared/context/auth-context";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const login = useCallback(() => {
+    setIsLoggedIn(true);
+  }, []);
+
+  const logout = useCallback(() => {
+    setIsLoggedIn(false);
+  }, []);
+
+  let routes;
+
+  if (isLoggedIn) {
+    routes = (
+      <Routes>
+        <Route path="/" element={<Users />} />
+        <Route path="/places/new" element={<NewPlace />} />
+        <Route path="/:uid/places" element={<UserPlaces />} />
+        <Route path="/places/:placeId" element={<UpdatePlace />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    )
+  } else {
+    routes = (
+      <Routes>
+        <Route path="/" element={<Users />} />
+        <Route path="/:uid/places" element={<UserPlaces />} />
+        {/* <Route path="/places/:placeId" element={<UpdatePlace />} /> */}
+        <Route path="/auth" element={<Auth />} />
+        <Route path="*" element={<Navigate to="/auth" />} />
+      </Routes>
+    )
+  }
+  
   return (
-    <Router>
-      <MainNavigation />
-      <main>
-        <Routes>
-          <Route path="/" element={<Users />} />
-          <Route path="/places/new" element={<NewPlace />} />
-          <Route path="/:uid/places" element={<UserPlaces />} />
-          <Route path="/places/:placeId" element={<UpdatePlace />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </main>
-    </Router>
+    <AuthContext.Provider
+      value={{ isLoggedIn: isLoggedIn, login: login, logout: logout }}
+    >
+      <Router>
+        <MainNavigation />
+        <main>
+          {routes}
+        </main>
+      </Router>
+    </AuthContext.Provider>
   );
 }
 

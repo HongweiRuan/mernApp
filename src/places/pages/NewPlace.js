@@ -4,7 +4,7 @@ import Button from "../../shared/components/FormElements/Button";
 import Input from "../../shared/components/FormElements/Input";
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "../../shared/util/validators";
 import "./PlaceForm.css";
-import { useForm } from "../hooks/form-hook";
+import { useForm } from "../../shared/hooks/form-hook";
 
 const NewPlace = () => {
   const [formState, inputHandler] = useForm(
@@ -24,8 +24,6 @@ const NewPlace = () => {
     },
     false
   );
-
-
 
   const placeSubmitHandler = (Event) => {
     Event.preventDefault();

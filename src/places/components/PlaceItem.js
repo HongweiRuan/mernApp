@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 
 import Button from "../../shared/components/FormElements/Button";
 import Card from "../../shared/components/UIElements/Card";
 import Modal from "../../shared/components/UIElements/Modal";
 import Map from "../../shared/components/UIElements/Map";
+import { AuthContext } from "../../shared/context/auth-context";
 import "./PlaceItem.css";
 
 const PlaceItem = (props) => {
+  const auth = useContext(AuthContext);
+
   const [showMap, setShowMap] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
@@ -22,7 +25,7 @@ const PlaceItem = (props) => {
   };
 
   const confirmDeleteHandler = () => {
-    setShowConfirmModal(false)
+    setShowConfirmModal(false);
     console.log("Deleting");
   };
   return (
@@ -47,8 +50,12 @@ const PlaceItem = (props) => {
         footerClass="place-item_modal-actions"
         footer={
           <React.Fragment>
-            <Button inverse onClick={cancelDeleteHandler}>CANCEL</Button>
-            <Button danger onClick={confirmDeleteHandler}>DELETE</Button>
+            <Button inverse onClick={cancelDeleteHandler}>
+              CANCEL
+            </Button>
+            <Button danger onClick={confirmDeleteHandler}>
+              DELETE
+            </Button>
           </React.Fragment>
         }
       >
@@ -69,8 +76,15 @@ const PlaceItem = (props) => {
             <Button inverse onClick={openMapHandler}>
               View on map
             </Button>
-            <Button to={`/places/${props.id}`}>Edit</Button>
-            <Button danger onClick={showDeleteWarningHandler}>Delete</Button>
+
+            {auth.isLoggedIn && (
+              <React.Fragment>
+                <Button to={`/places/${props.id}`}>Edit</Button>
+                <Button danger onClick={showDeleteWarningHandler}>
+                  Delete
+                </Button>
+              </React.Fragment>
+            )}
           </div>
         </Card>
       </li>
