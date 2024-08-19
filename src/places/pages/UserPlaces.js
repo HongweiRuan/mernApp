@@ -1,43 +1,64 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import PlaceList from "../components/PlaceList";
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
-const dummyPlaces = [
-  {
-    id: "p1",
-    title: "dummy title",
-    description: "dummy des",
-    imageUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg",
-    address: "dummy address",
-    location: {
-      lat: 40.7484405,
-      lng: -73.9856644,
-    },
-    creator: "u1",
-  },
-  {
-    id: "p2",
-    title: "dummy title",
-    description: "dummy des",
-    imageUrl:
-      "https://upload.wikimedia.org/wikipedia/commons/1/10/Empire_State_Building_%28aerial_view%29.jpg",
-    address: "dummy address",
-    location: {
-      lat: 40.7484405,
-      lng: -73.9856644,
-    },
-    creator: "u2",
-  },
-];
+import PlaceList from '../components/PlaceList';
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 
 const UserPlaces = () => {
+  const [loadedPlaces, setLoadedPlaces] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const userId = useParams().uid;
 
-  const loadedPlaces = dummyPlaces.filter(place => place.creator === userId)
+  useEffect(() => {
+    const fetchPlaces = async () => {
+  
+      setIsLoading(true);
+      try {
+        const response = await fetch(`http://localhost:5000/api/places/user/${userId}`);
+        const responseData = await response.json();
 
-  return <PlaceList items={loadedPlaces} />
-}
+        console.log('Response:', response);
+  
+        if (!response.ok) {
+          console.error('Error response from API:', responseData);
+          throw new Error(responseData.message);
+        }
+  
+        setLoadedPlaces(responseData.places);
+        console.log('Places:', responseData.places);
+      } catch (err) {
+        console.error('Error fetching places:', err);
+        setError(err.message);
+      }
+      setIsLoading(false);
+    };
+    fetchPlaces();
+  }, [userId]);
 
-export default UserPlaces
+  const clearError = () => {
+    setError(null);
+  };
+
+  const deleteHandler = (deletedPlaceId) => {
+    setLoadedPlaces((prevPlaces) =>
+      prevPlaces.filter((place) => place.id !== deletedPlaceId)
+    );
+  }
+
+  return (
+    <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
+      {isLoading && (
+        <div className="center">
+          <LoadingSpinner />
+        </div>
+      )}
+      {!isLoading && loadedPlaces && <PlaceList items={loadedPlaces} onDeletePlace={deleteHandler}/>}
+    </React.Fragment>
+  );
+};
+
+export default UserPlaces;
