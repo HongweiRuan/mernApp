@@ -33,7 +33,7 @@ const NewPlace = () => {
       image: {
         value: null,
         isValid: false,
-      }, 
+      },
     },
     false
   );
@@ -56,7 +56,7 @@ const NewPlace = () => {
       // send data to server
       console.log("Token before sending request:", auth.token); // 打印token
 
-      await sendRequest("http://localhost:5000/api/places", "POST", formData, {
+      await sendRequest(process.env.REACT_APP_BACKEND_URL + "/places", "POST", formData, {
         Authorization: "Bearer " + auth.token,
       });
 
@@ -95,7 +95,12 @@ const NewPlace = () => {
           errorText="Please enter a valid address."
           onInput={inputHandler}
         />
-        <ImageUpload center id="image" onInput={inputHandler} errorText="Please provide a picture"/>
+        <ImageUpload
+          center
+          id="image"
+          onInput={inputHandler}
+          errorText="Please provide a picture"
+        />
         <Button type="submit" disabled={!formState.isValid}>
           ADD PLACE
         </Button>
