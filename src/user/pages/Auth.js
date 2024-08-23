@@ -66,10 +66,10 @@ const Auth = () => {
 
   const authSubmitHandler = async (event) => {
     event.preventDefault();
-  
+
     if (isLoginMode) {
       try {
-        console.log('Login request started');
+        console.log("Login request started");
         const responseData = await sendRequest(
           "http://localhost:5000/api/users/login",
           "POST",
@@ -81,10 +81,10 @@ const Auth = () => {
             "Content-Type": "application/json",
           }
         );
-        console.log('Login request successful', responseData);
-        auth.login(responseData.user.id);
+
+        auth.login(responseData.userId, responseData.token);
       } catch (err) {
-        console.error('Login request failed', err);
+        console.error("Login request failed", err);
       }
     } else {
       try {
@@ -94,17 +94,15 @@ const Auth = () => {
         formData.append("password", formState.inputs.password.value);
         formData.append("image", formState.inputs.image.value);
 
-
         const responseData = await sendRequest(
           "http://localhost:5000/api/users/signup",
           "POST",
           formData
         );
-        console.log('Signup request successful', responseData);
-        auth.login(responseData.user.id);
-      } catch (err) {
-        console.error('Signup request failed', err);
-      }
+        // console.log("Received token:", responseData.token); // 检查这里的输出
+
+        auth.login(responseData.userId, responseData.token);
+      } catch (err) {}
     }
   };
 
@@ -127,8 +125,15 @@ const Auth = () => {
               onInput={inputHandler}
             />
           )}
-          {!isLoginMode && <ImageUpload center id="image" onInput={inputHandler}  errorText="Please provide a picture"/>}
-          {console.log('formState', formState)}
+          {!isLoginMode && (
+            <ImageUpload
+              center
+              id="image"
+              onInput={inputHandler}
+              errorText="Please provide a picture"
+            />
+          )}
+          {console.log("formState", formState)}
           <Input
             element="input"
             id="email"

@@ -43,20 +43,22 @@ const NewPlace = () => {
   const placeSubmitHandler = async (Event) => {
     Event.preventDefault();
 
-    const formData = new FormData();
-    formData.append("title", formState.inputs.title.value);
-    formData.append("description", formState.inputs.description.value);
-    formData.append("address", formState.inputs.address.value);
-    formData.append("creator", auth.userId);
-    formData.append("image", formState.inputs.image.value);
-
     try {
+      const formData = new FormData();
+      formData.append("title", formState.inputs.title.value);
+      formData.append("description", formState.inputs.description.value);
+      formData.append("address", formState.inputs.address.value);
+      formData.append("image", formState.inputs.image.value);
+
+      // console.log(auth.token);
+      // console.log(auth.userId);
+
       // send data to server
-      await sendRequest(
-        "http://localhost:5000/api/places",
-        "POST",
-        formData,
-      );
+      console.log("Token before sending request:", auth.token); // 打印token
+
+      await sendRequest("http://localhost:5000/api/places", "POST", formData, {
+        Authorization: "Bearer " + auth.token,
+      });
 
       // redirect
       navigate("/");
