@@ -1,4 +1,4 @@
-.main-navigation__menu-btn {
+/* .main-navigation__menu-btn {
   width: 3rem;
   height: 3rem;
   background: transparent;
@@ -24,6 +24,62 @@
 .main-navigation__title a {
   text-decoration: none;
   color: white;
+}
+
+.main-navigation__header-nav {
+  display: none;
+}
+
+.main-navigation__drawer-nav {
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .main-navigation__menu-btn {
+    display: none;
+  }
+
+  .main-navigation__header-nav {
+    display: block;
+  }
+} */
+
+.main-navigation__menu-btn {
+  width: 3rem;
+  height: 3rem;
+  background: transparent;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-right: 2rem;
+  cursor: pointer;
+  /* 过渡效果 */
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.main-navigation__menu-btn span {
+  display: block;
+  width: 3rem;
+  height: 2.5px;
+  background: white;
+  transition: background-color 0.3s ease; /* 颜色平滑过渡 */
+}
+
+.main-navigation__title {
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 现代字体 */
+}
+
+.main-navigation__title a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease; /* 颜色平滑过渡 */
+}
+
+.main-navigation__title a:hover,
+.main-navigation__title a:active {
+  color: #ffeb3b; /* 悬停或激活时的颜色 */
 }
 
 .main-navigation__header-nav {

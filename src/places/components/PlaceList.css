@@ -1,7 +1,40 @@
+/* .place-list {
+  list-style: none;
+  margin: 1rem auto;
+  padding: 0;
+  width: 90%;
+  max-width: 40rem;
+} */
+
 .place-list {
   list-style: none;
   margin: 1rem auto;
   padding: 0;
   width: 90%;
   max-width: 40rem;
+  background-color: #f8f9fa; /* 添加柔和的背景色 */
+  border-radius: 8px; /* 圆角边框 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+}
+
+/* 针对列表项的改进，可以通过.parent-class > *.child-class 的选择器方式 */
+.place-list > li {
+  margin-bottom: 1rem; /* 保持列表项之间的距离 */
+  padding: 1rem;
+  background-color: #fff; /* 列表项背景色 */
+  border-radius: 8px; /* 列表项圆角 */
+  transition: transform 0.2s, box-shadow 0.2s; /* 添加平滑的过渡效果 */
+}
+
+.place-list > li:hover {
+  transform: translateY(-5px); /* 悬停时稍微向上移动 */
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* 悬停时添加更多阴影 */
+}
+
+/* 调整为移动设备友好 */
+@media (max-width: 768px) {
+  .place-list > li {
+    margin-bottom: 0.5rem; /* 移动设备上减少间距 */
+    padding: 0.5rem; /* 移动设备上减少内边距 */
+  }
 }

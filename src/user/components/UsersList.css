@@ -1,3 +1,14 @@
+/* .users-list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  width: 90%;
+  max-width: 50rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+} */
+
 .users-list {
   list-style: none;
   margin: 0 auto;
@@ -7,4 +18,22 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 1rem; /* 添加网格间距 */
+}
+
+.users-list li {
+  flex-basis: calc(50% - 2rem); /* 每行显示两个项目，并包含间距 */
+  box-sizing: border-box; /* 包括边框和内边距在内 */
+}
+
+@media (min-width: 768px) {
+  .users-list li {
+    flex-basis: calc(33.33% - 2rem); /* 在更大屏幕上每行显示三个项目，并包含间距 */
+  }
+}
+
+@media (min-width: 1024px) {
+  .users-list li {
+    flex-basis: calc(25% - 2rem); /* 在更大屏幕上每行显示四个项目，并包含间距 */
+  }
 }

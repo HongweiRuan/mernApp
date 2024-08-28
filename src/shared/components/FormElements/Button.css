@@ -1,15 +1,19 @@
 .button {
   font: inherit;
   padding: 0.5rem 1.5rem;
-  border: 1px solid #ff0055;
+  border: 1px solid #13fd7d;
   border-radius: 4px;
-  background: #ff0055;
+  background: #13fd7d;
   color: white;
   cursor: pointer;
   margin-right: 1rem;
   text-decoration: none;
   display: inline-block;
+  text-align: center;
+  width: 100%; /* 设置相同的宽度 */
+  max-width: 200px; /* 设置最大宽度 */
 }
+
 
 .button:focus {
   outline: none;
@@ -17,30 +21,30 @@
 
 .button:hover,
 .button:active {
-  background: #ff4382;
-  border-color: #ff4382;
+  background: #13fd7d;
+  border-color: #13fd7d;
 }
 
 .button--inverse {
   background: transparent;
-  color: #ff0055;
+  color: #13fd7d;
 }
 
 .button--inverse:hover,
 .button--inverse:active {
   color: white;
-  background: #ff0055;
+  background: #13fd7d;
 }
 
 .button--danger {
-  background: #830000;
-  border-color: #830000;
+  background: #14ce83;
+  border-color: #14ce83;
 }
 
 .button--danger:hover,
 .button--danger:active {
-  background: #f34343;
-  border-color: #f34343;
+  background: #14ce83;
+  border-color: #14ce83;
 }
 
 .button:disabled,

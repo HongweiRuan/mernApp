@@ -1,11 +1,22 @@
+/* 
 .card {
   position: relative;
-  margin: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 6px;
   overflow: hidden;
   background: white;
+} */
+
+.card {
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 调整阴影效果，更显轻盈 */
+  border-radius: 10px; /* 增大圆角，提升现代感 */
+  overflow: hidden;
+  background: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* 添加过渡效果 */
 }
 
-
-
+.card:hover {
+  transform: scale(1.02); /* 悬停时略微放大 */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15); /* 悬停时增加阴影 */
+}

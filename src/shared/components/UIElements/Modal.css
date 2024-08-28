@@ -1,4 +1,4 @@
-.modal {
+/* .modal {
   z-index: 100;
   position: fixed;
   top: 22vh;
@@ -51,6 +51,68 @@
   opacity: 1;
 }
  
+.modal-exit-active {
+  transform: translateY(-10rem);
+  opacity: 0;
+  transition: all 200ms;
+} */
+
+.modal {
+  z-index: 100;
+  position: fixed;
+  top: 22vh;
+  left: 10%;
+  width: 80%;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* 调整阴影效果，更显轻盈 */
+  border-radius: 10px; /* 增大圆角，提升现代感 */
+  overflow: hidden; /* 确保内容不会溢出 */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* 添加过渡效果 */
+}
+
+.modal__header {
+  width: 100%;
+  padding: 1rem 0.5rem;
+  background: #007bff; /* 蓝色背景 */
+  color: white;
+}
+
+.modal__header h2 {
+  margin: 0.5rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* 现代字体 */
+}
+
+.modal__content {
+  padding: 1rem 0.5rem;
+}
+
+.modal__footer {
+  padding: 1rem 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    left: calc(50% - 20rem);
+    width: 40rem;
+  }
+}
+
+.modal-enter {
+  transform: translateY(-10rem);
+  opacity: 0;
+}
+
+.modal-enter-active {
+  transform: translateY(0);
+  opacity: 1;
+  transition: all 200ms;
+}
+
+.modal-exit {
+  transform: translateY(0);
+  opacity: 1;
+}
+
 .modal-exit-active {
   transform: translateY(-10rem);
   opacity: 0;

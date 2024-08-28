@@ -1,4 +1,4 @@
-.place-item {
+/* .place-item {
   margin: 1rem 0;
 }
  
@@ -51,6 +51,97 @@
 .map-container {
   height: 20rem;
   width: 100%;
+}
+
+@media (min-width: 768px) {
+  .place-item__image {
+    height: 20rem;
+  } 
+} */
+
+.place-item__content {
+  padding: 1rem;
+  background-color: #f8f9fa; /* 添加柔和的背景色 */
+  border-radius: 8px; /* 圆角边框 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+}
+
+.place-item__info {
+  padding: 0;
+  text-align: center;
+  color: #495057; /* 更改文本颜色为中灰色 */
+}
+
+.place-item__image {
+  width: 100%;
+  height: 12.5rem;
+  margin-right: 0; /* 去除右边距 */
+  border-radius: 8px 8px 0 0; /* 顶部图片圆角 */
+  overflow: hidden; /* 确保圆角效果生效 */
+}
+
+.place-item__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out; /* 添加平滑过渡效果 */
+}
+
+.place-item__image img:hover {
+  transform: scale(1.05); /* 图片悬停时稍微放大 */
+}
+
+.place-item__info h2,
+.place-item__info h3,
+.place-item__info p {
+  margin: 0 0 0.5rem 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* 使用现代字体 */
+}
+
+.place-item__actions {
+  padding: 1rem;
+  text-align: center;
+  border-top: 1px solid #e9ecef; /* 更改边框颜色为更淡的灰色 */
+  display: flex; /* 使用flexbox布局 */
+  justify-content: center; /* 中间对齐 */
+  gap: 0.5rem; /* 按钮之间的间距 */
+}
+
+.place-item__actions button,
+.place-item__actions a {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem; /* 添加内边距 */
+  background-color: #007bff; /* 按钮背景色 */
+  color: #fff; /* 按钮文字颜色 */
+  border: none; /* 无边框 */
+  border-radius: 4px; /* 圆角边框 */
+  text-decoration: none; /* 无下划线 */
+  cursor: pointer; /* 鼠标悬停变为指针 */
+  transition: background-color 0.3s ease; /* 添加平滑过渡效果 */
+}
+
+.place-item__actions button:hover,
+.place-item__actions a:hover {
+  background-color: #0056b3; /* 悬停时的背景色 */
+}
+
+.place-item__modal-content {
+  padding: 1rem; /* 添加内边距 */
+  background-color: #f8f9fa; /* 添加柔和的背景色 */
+  border-radius: 8px; /* 圆角边框 */
+}
+
+.place-item__modal-actions {
+  text-align: right;
+  margin-top: 1rem; /* 添加顶部边距 */
+}
+
+.map-container {
+  height: 20rem;
+  width: 100%;
+  border-radius: 8px; /* 圆角边框 */
+  overflow: hidden; /* 确保圆角效果生效 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
 }
 
 @media (min-width: 768px) {
